@@ -17,7 +17,6 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         title = checklist.name
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,7 +25,7 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
     }
     
     // Document
-    
+
     func documentsDirectory() -> String{
         
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)

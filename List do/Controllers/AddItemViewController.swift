@@ -22,7 +22,11 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     @IBOutlet weak var textFiled: UITextField!
     @IBOutlet weak var donBarButton: UIBarButtonItem!
+    @IBOutlet weak var pickerDateAlarmButton: UIButton!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var NotificationSwitch: UISwitch!
     
+    var check:Bool = false
     weak var delegate : ItemDetailViewControllerDelegate?
     
     var itemToEdit:ChecklistItem!
@@ -34,8 +38,10 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         donBarButton.isEnabled = false
+        datePicker.isHidden = true
+        pickerDateAlarmButton.isEnabled = false
+        NotificationSwitch.isOn = false
         
         if let item = itemToEdit{
            title = "Edit Item"
@@ -54,6 +60,28 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
  
         return true
     }
+    
+    @IBAction func ChooseNotificationSwitch(_ sender: Any) {
+        if NotificationSwitch.isOn == true {
+            pickerDateAlarmButton.isEnabled = true
+        }else{
+            pickerDateAlarmButton.isEnabled = false
+            datePicker.isHidden = true
+        }
+    }
+   
+    @IBAction func choosechoosechooseDataAlarmButton(_ sender: Any) {
+        if check{
+            datePicker.isHidden = true
+            check = false
+        }else{
+            datePicker.isHidden = false
+            check = true
+        }
+       // pickerDateAlarmButton.titleLabel?.text = "02-05-20017 00:00"
+    
+    }
+    
     
     @IBAction func cancel(){
         delegate?.itemDetailViewControllerDidCancel(controller: self)

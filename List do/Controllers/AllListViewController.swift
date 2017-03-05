@@ -45,7 +45,11 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     }
 
     // MARK: - Table view data source
-
+    
+    func pushAddItemVC(){
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
