@@ -19,7 +19,16 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
          self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        let addItemButton = UIButton(type: .custom)
+        addItemButton.setImage(UIImage(named: "addItem.png"), for: .normal)
+        addItemButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        addItemButton.addTarget(self, action: #selector(AllListViewController.pushAddItemVC), for: .touchUpInside)
+        
+        let item1 = UIBarButtonItem(customView: addItemButton)
+        
+        //self.navigationItem.setLeftBarButtonItems([item1], animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +56,12 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     // MARK: - Table view data source
     
     func pushAddItemVC(){
-        
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Add Checklist") as? ListDetailViewController {
+            //viewController.newsObj =
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

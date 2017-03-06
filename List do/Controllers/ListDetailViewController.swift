@@ -39,6 +39,7 @@ class ListDetailViewController : UITableViewController, UITextFieldDelegate{
             title = "Edit Checklist"
             textFiled.text = checklist.name
             donBarButton.isEnabled = true
+            
         }
     }
    

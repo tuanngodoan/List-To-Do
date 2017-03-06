@@ -12,14 +12,13 @@
 		DC2011E31E359B380010261A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC2011E21E359B380010261A /* Assets.xcassets */; };
 		DC2011E61E359B380010261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2011E41E359B380010261A /* LaunchScreen.storyboard */; };
 		DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */; };
-		DCD14B2C1E69682B004E81D2 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B291E69682B004E81D2 /* AddItemViewController.swift */; };
+		DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */; };
 		DCD14B2E1E69682B004E81D2 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */; };
 		DCD14B321E696879004E81D2 /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B301E696879004E81D2 /* CheckList.swift */; };
 		DCD14B331E696879004E81D2 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B311E696879004E81D2 /* ChecklistItem.swift */; };
 		DCD14B361E6968EF004E81D2 /* CustomCheckListUINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B351E6968EF004E81D2 /* CustomCheckListUINavigation.swift */; };
 		DCD14B3A1E6969DB004E81D2 /* addItem.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD14B381E6969DB004E81D2 /* addItem.png */; };
 		DCD14B3B1E6969DB004E81D2 /* editItem.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD14B391E6969DB004E81D2 /* editItem.png */; };
-		DCD14B411E698723004E81D2 /* CustomAddItemBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B401E698723004E81D2 /* CustomAddItemBarButton.swift */; };
 		DCD14B431E6987ED004E81D2 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B421E6987ED004E81D2 /* AllListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,14 +30,13 @@
 		DC2011E51E359B380010261A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC2011E71E359B380010261A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "List do/Info.plist"; sourceTree = "<group>"; };
 		DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
-		DCD14B291E69682B004E81D2 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		DCD14B301E696879004E81D2 /* CheckList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		DCD14B311E696879004E81D2 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		DCD14B351E6968EF004E81D2 /* CustomCheckListUINavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCheckListUINavigation.swift; sourceTree = "<group>"; };
 		DCD14B381E6969DB004E81D2 /* addItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addItem.png; sourceTree = "<group>"; };
 		DCD14B391E6969DB004E81D2 /* editItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editItem.png; sourceTree = "<group>"; };
-		DCD14B401E698723004E81D2 /* CustomAddItemBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddItemBarButton.swift; sourceTree = "<group>"; };
 		DCD14B421E6987ED004E81D2 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +109,7 @@
 			children = (
 				DCD14B421E6987ED004E81D2 /* AllListViewController.swift */,
 				DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */,
-				DCD14B291E69682B004E81D2 /* AddItemViewController.swift */,
+				DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */,
 				DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */,
 			);
 			path = Controllers;
@@ -130,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				DCD14B351E6968EF004E81D2 /* CustomCheckListUINavigation.swift */,
-				DCD14B401E698723004E81D2 /* CustomAddItemBarButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,8 +176,7 @@
 				TargetAttributes = {
 					DC2011D71E359B380010261A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 25ZS53YZR8;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -224,12 +220,11 @@
 			files = (
 				DCD14B2E1E69682B004E81D2 /* CheckListViewController.swift in Sources */,
 				DCD14B331E696879004E81D2 /* ChecklistItem.swift in Sources */,
-				DCD14B2C1E69682B004E81D2 /* AddItemViewController.swift in Sources */,
+				DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */,
 				DCD14B361E6968EF004E81D2 /* CustomCheckListUINavigation.swift in Sources */,
 				DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */,
 				DCD14B321E696879004E81D2 /* CheckList.swift in Sources */,
 				DCD14B431E6987ED004E81D2 /* AllListViewController.swift in Sources */,
-				DCD14B411E698723004E81D2 /* CustomAddItemBarButton.swift in Sources */,
 				DC2011DC1E359B380010261A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25ZS53YZR8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "List do/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "doantuan.List-do";
@@ -366,7 +361,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25ZS53YZR8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "List do/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "doantuan.List-do";

@@ -22,11 +22,14 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     @IBOutlet weak var textFiled: UITextField!
     @IBOutlet weak var donBarButton: UIBarButtonItem!
-    @IBOutlet weak var pickerDateAlarmButton: UIButton!
+    @IBOutlet weak var remindSwitch: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var NotificationSwitch: UISwitch!
+    @IBOutlet weak var dueDateTitle: UILabel!
     
+    
+    var dueDate:Date = Date()
     var check:Bool = false
+    
     weak var delegate : ItemDetailViewControllerDelegate?
     
     var itemToEdit:ChecklistItem!
@@ -39,15 +42,35 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         donBarButton.isEnabled = false
-        datePicker.isHidden = true
-        pickerDateAlarmButton.isEnabled = false
-        NotificationSwitch.isOn = false
+        
         
         if let item = itemToEdit{
            title = "Edit Item"
            textFiled.text = item.text
+           remindSwitch.isOn  = item.shouldRemind
+           dueDate = item.dueDate
         }
+        remindSwitch.isOn = false
+        datePicker.isHidden = true
+        dueDateTitle.isEnabled = false
+        updateDueDateLabel()
+    }
+    
+    
+    func updateDueDateLabel() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        dueDateTitle.text = formatter.string(from: dueDate)
+    }
+    
+    @IBAction func remindSwitchChanged(sender: UISwitch){
         
+        if remindSwitch.isOn == true {
+            datePicker.isHidden = false
+        }else{
+            datePicker.isHidden = true
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -56,31 +79,12 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         
         let newText:NSString = oldText.replacingCharacters(in: range, with: string) as NSString
         
-        donBarButton.isEnabled = (newText.length > 0)
+        
+        donBarButton.isEnabled = (newText.length > 0 || remindSwitch.isOn == true)
  
         return true
     }
     
-    @IBAction func ChooseNotificationSwitch(_ sender: Any) {
-        if NotificationSwitch.isOn == true {
-            pickerDateAlarmButton.isEnabled = true
-        }else{
-            pickerDateAlarmButton.isEnabled = false
-            datePicker.isHidden = true
-        }
-    }
-   
-    @IBAction func choosechoosechooseDataAlarmButton(_ sender: Any) {
-        if check{
-            datePicker.isHidden = true
-            check = false
-        }else{
-            datePicker.isHidden = false
-            check = true
-        }
-       // pickerDateAlarmButton.titleLabel?.text = "02-05-20017 00:00"
-    
-    }
     
     
     @IBAction func cancel(){
@@ -90,17 +94,38 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     @IBAction func done(){
         if let item = itemToEdit{
             item.text = textFiled.text!
+            item.shouldRemind = remindSwitch.isOn
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(controller: self, didFinishEdittingItem : item)
         }else{
             
             let item:ChecklistItem = ChecklistItem()
             item.text = textFiled.text!
             item.checked = false
-            
+            item.shouldRemind = remindSwitch.isOn
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(controller: self, didFinishAddingItem: item)
         }
     }
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        if indexPath.section == 1 && indexPath.row == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
     }
+    // insert date picker
+    
+    @IBAction func dateChanged(datePicker: UIDatePicker){
+        dueDate = datePicker.date
+        updateDueDateLabel()
+        
+        let selectedDate = datePicker.date
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        let title:String = textFiled.text!
+        delegate?.scheduleNotification(at: selectedDate, title: title, remindContent: title)
+    }
+
 }
+
