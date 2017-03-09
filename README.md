@@ -2,7 +2,6 @@
 
 Mô phỏng lại ứng dụng nhắc nhở công viêc cá nhân.
 Chưa update
-![](demo_ListDo.gif)
 
 ## Nền tảng
 
