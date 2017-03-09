@@ -13,12 +13,19 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var lists: [CheckList]!
+    
+    //let dataModel = DataModel()
     var titleRemind:String!
     var messRemind:String!
-    // allow notification
+   
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+//        // Save Data
+//        let navigationController = window!.rootViewController as! UINavigationController
+//        let controller = navigationController.viewControllers[1] as! AllListViewController
+//        controller.dataModel = dataModel
+        
+         // allow notification
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
             if !accepted {
                 print("Notification access denied.")
@@ -64,10 +71,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         print("Notification in app")
         showNoticationView()
     }
+    
+//    func saveData(){
+//        dataModel.saveChecklitsItem()
+//    }
+//    func applicationDidEnterBackground(_ application: UIApplication) {
+//        saveData()
+//    }
+//    func applicationWillTerminate(_ application: UIApplication) {
+//        saveData()
+//    }
 }
 //extension AppDelegate: UNUserNotificationCenterDelegate {
 //        func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {

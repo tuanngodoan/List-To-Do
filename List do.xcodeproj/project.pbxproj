@@ -23,7 +23,7 @@
 		DCD14B3B1E6969DB004E81D2 /* editItem.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD14B391E6969DB004E81D2 /* editItem.png */; };
 		DCD14B431E6987ED004E81D2 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B421E6987ED004E81D2 /* AllListViewController.swift */; };
 		DCE44A041E71330A000CD6F7 /* showNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE44A031E71330A000CD6F7 /* showNotification.swift */; };
-		DCE7F0711E7152CB0058C146 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7F0701E7152CB0058C146 /* SaveData.swift */; };
+		DCE7F0711E7152CB0058C146 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7F0701E7152CB0058C146 /* DataModel.swift */; };
 		DCE7F0731E71629D0058C146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +47,7 @@
 		DCD14B391E6969DB004E81D2 /* editItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editItem.png; sourceTree = "<group>"; };
 		DCD14B421E6987ED004E81D2 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		DCE44A031E71330A000CD6F7 /* showNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = showNotification.swift; path = ../Controllers/showNotification.swift; sourceTree = "<group>"; };
-		DCE7F0701E7152CB0058C146 /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
+		DCE7F0701E7152CB0058C146 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E69120CD60C46CA5245CD891 /* Pods-List do.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-List do.debug.xcconfig"; path = "Pods/Target Support Files/Pods-List do/Pods-List do.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD14B301E696879004E81D2 /* CheckList.swift */,
-				DCE7F0701E7152CB0058C146 /* SaveData.swift */,
+				DCE7F0701E7152CB0058C146 /* DataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 				DCE44A041E71330A000CD6F7 /* showNotification.swift in Sources */,
 				DC8BE55E1E7171B7001FCF86 /* RegistorViewController.swift in Sources */,
 				DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */,
-				DCE7F0711E7152CB0058C146 /* SaveData.swift in Sources */,
+				DCE7F0711E7152CB0058C146 /* DataModel.swift in Sources */,
 				DCD14B361E6968EF004E81D2 /* CustomCheckListUINavigation.swift in Sources */,
 				DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */,
 				DCD14B321E696879004E81D2 /* CheckList.swift in Sources */,

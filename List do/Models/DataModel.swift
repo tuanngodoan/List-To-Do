@@ -8,10 +8,13 @@
 
 import Foundation
 
-class SaveData: NSObject {
+class DataModel: NSObject {
+    
+    var lists = [CheckList]()
     
     override init(){
         super.init()
+        loadCheckListItem()
     }
 
     // Document
@@ -29,33 +32,29 @@ class SaveData: NSObject {
     
     
     // Save data
-    func saveChecklitsItem(items:[CheckList]){
+    func saveChecklitsItem(){
         
         let data = NSMutableData()
         let archiver = NSKeyedArchiver(forWritingWith: data)
-        archiver.encode(items, forKey: "Checklist")
+        archiver.encode(lists, forKey: "Checklist")
         archiver.finishEncoding()
         data.write(toFile: dataFilePath(), atomically: true)
     }
     
     // Load data
-    
-    func loadCheckListItem()-> [CheckList]{
+    func loadCheckListItem(){
         
         let path = dataFilePath()
-        var items = [CheckList]()
         if FileManager.default.fileExists(atPath: path){
             if let data = NSData(contentsOfFile: path){
                 
                 let unarchiver = NSKeyedUnarchiver(forReadingWith: data as Data)
                 
-                items = (unarchiver.decodeObject(forKey: "Checklist") as? [CheckList])!
+                lists = (unarchiver.decodeObject(forKey: "Checklist") as? [CheckList])!
                 
                 unarchiver.finishDecoding()
-               // return items
             }
         }
-        return items
     }
 }
 

@@ -11,33 +11,26 @@ import Foundation
 
 class checkListViewController: UITableViewController,ItemDetailViewControllerDelegate {
     
-    var items = CheckList().children
-    
     var checklist:CheckList!
-    
-    var saveData = SaveData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = checklist.name
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-       // items = saveData.loadCheckListItem()
     }
     
-    ///
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return checklist.children.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "checklistItem", for: indexPath)
         
-        let item = items[indexPath.row]
+        let item = checklist.children[indexPath.row]
         
         configureTextForCell(cell: cell, withChecklistItem: item)
         
@@ -48,22 +41,20 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath){
-            let item = items[indexPath.row]
+            let item = checklist.children[indexPath.row]
             item.toggleChecked()
             configueCheckmarkForCell(cell: cell, withChecklistItem: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        //saveData.saveChecklitsItem(items: items)
     }
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        items.remove(at: indexPath.row)
+        checklist.children.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        //saveData.saveChecklitsItem(items: items)
 
     }
     
@@ -89,8 +80,8 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
     }
     func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: CheckList) {
         
-        let newRow = items.count
-        items.append(item)
+        let newRow = checklist.children.count
+        checklist.children.append(item)
         
         let indexPath = NSIndexPath(row: newRow, section: 0)
         
@@ -99,22 +90,18 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
         tableView.insertRows(at: indexPaths as [IndexPath], with: .automatic)
 
         dismiss(animated: true, completion: nil)
-        
-        //saveData.saveChecklitsItem(items: items)
 
     }
     
     func itemDetailViewController(controller: ItemDetailViewController, didFinishEdittingItem item: CheckList) {
        
-        if let i =  items.index(of: item){
+        if let i =  checklist.children.index(of: item){
             let indexPath = NSIndexPath(row: i, section: 0)
             if let cell = tableView.cellForRow(at: indexPath as IndexPath){
                 configureTextForCell(cell: cell, withChecklistItem: item)
             }
         }
             dismiss(animated: true, completion: nil)
-        //saveData.saveChecklitsItem(items: items)
-
     }
     
     
@@ -138,7 +125,7 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
                 controller.delegate = self
                 
                 if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
-                    controller.itemToEdit = items[indexPath.row]
+                    controller.itemToEdit = checklist.children[indexPath.row]
                 }
         }
     }
