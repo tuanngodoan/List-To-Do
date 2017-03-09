@@ -48,7 +48,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
            title = "Edit Item"
            textFiled.text = item.text
            remindSwitch.isOn  = item.shouldRemind
-           dueDate = item.dueDate
+           dueDate = item.dueDate as Date
         }
         remindSwitch.isOn = false
         datePicker.isHidden = true
@@ -65,7 +65,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     }
     
     @IBAction func remindSwitchChanged(sender: UISwitch){
-        
+        donBarButton.isEnabled = true
         if remindSwitch.isOn == true {
             datePicker.isHidden = false
         }else{
@@ -80,7 +80,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         let newText:NSString = oldText.replacingCharacters(in: range, with: string) as NSString
         
         
-        donBarButton.isEnabled = (newText.length > 0 || remindSwitch.isOn == true)
+        donBarButton.isEnabled = (newText.length > 0)
  
         return true
     }
@@ -95,7 +95,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         if let item = itemToEdit{
             item.text = textFiled.text!
             item.shouldRemind = remindSwitch.isOn
-            item.dueDate = dueDate
+            item.dueDate = dueDate as NSDate
             delegate?.itemDetailViewController(controller: self, didFinishEdittingItem : item)
         }else{
             
@@ -103,7 +103,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
             item.text = textFiled.text!
             item.checked = false
             item.shouldRemind = remindSwitch.isOn
-            item.dueDate = dueDate
+            item.dueDate = dueDate as NSDate
             delegate?.itemDetailViewController(controller: self, didFinishAddingItem: item)
         }
     }

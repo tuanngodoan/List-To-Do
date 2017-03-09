@@ -37,7 +37,6 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
                 return "\(documentsDirectory())/Checklists.plist"
     }
     
-    ///
     
     // Save data
     func saveChecklitsItem(){

@@ -69,6 +69,7 @@ class ListDetailViewController : UITableViewController, UITextFieldDelegate{
             delegate?.listDetailViewController(controller: self, didFinishAddingItem: checklist)
         }
     }
+    
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
