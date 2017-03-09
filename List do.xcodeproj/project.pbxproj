@@ -7,39 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58097F598D7A218C0D0A665A /* Pods_List_do.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06BD620FD626740E9692940 /* Pods_List_do.framework */; };
 		DC2011DC1E359B380010261A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2011DB1E359B380010261A /* AppDelegate.swift */; };
 		DC2011E11E359B380010261A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2011DF1E359B380010261A /* Main.storyboard */; };
 		DC2011E31E359B380010261A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC2011E21E359B380010261A /* Assets.xcassets */; };
 		DC2011E61E359B380010261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2011E41E359B380010261A /* LaunchScreen.storyboard */; };
+		DC2F336F1E71678C008157AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2F336E1E71678C008157AE /* LoginViewController.swift */; };
+		DC8BE55E1E7171B7001FCF86 /* RegistorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8BE55D1E7171B7001FCF86 /* RegistorViewController.swift */; };
 		DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */; };
 		DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */; };
 		DCD14B2E1E69682B004E81D2 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */; };
 		DCD14B321E696879004E81D2 /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B301E696879004E81D2 /* CheckList.swift */; };
-		DCD14B331E696879004E81D2 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B311E696879004E81D2 /* ChecklistItem.swift */; };
 		DCD14B361E6968EF004E81D2 /* CustomCheckListUINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B351E6968EF004E81D2 /* CustomCheckListUINavigation.swift */; };
 		DCD14B3A1E6969DB004E81D2 /* addItem.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD14B381E6969DB004E81D2 /* addItem.png */; };
 		DCD14B3B1E6969DB004E81D2 /* editItem.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD14B391E6969DB004E81D2 /* editItem.png */; };
 		DCD14B431E6987ED004E81D2 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B421E6987ED004E81D2 /* AllListViewController.swift */; };
 		DCE44A041E71330A000CD6F7 /* showNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE44A031E71330A000CD6F7 /* showNotification.swift */; };
+		DCE7F0711E7152CB0058C146 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7F0701E7152CB0058C146 /* SaveData.swift */; };
+		DCE7F0731E71629D0058C146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		189C1B111503925C0CFDE3B1 /* Pods-List do.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-List do.release.xcconfig"; path = "Pods/Target Support Files/Pods-List do/Pods-List do.release.xcconfig"; sourceTree = "<group>"; };
+		C06BD620FD626740E9692940 /* Pods_List_do.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_List_do.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC2011D81E359B380010261A /* List do.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "List do.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC2011DB1E359B380010261A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "List do/AppDelegate.swift"; sourceTree = "<group>"; };
 		DC2011E01E359B380010261A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC2011E21E359B380010261A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		DC2011E51E359B380010261A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC2011E71E359B380010261A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "List do/Info.plist"; sourceTree = "<group>"; };
+		DC2F336E1E71678C008157AE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DC8BE55D1E7171B7001FCF86 /* RegistorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistorViewController.swift; sourceTree = "<group>"; };
 		DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		DCD14B301E696879004E81D2 /* CheckList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
-		DCD14B311E696879004E81D2 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		DCD14B351E6968EF004E81D2 /* CustomCheckListUINavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCheckListUINavigation.swift; sourceTree = "<group>"; };
 		DCD14B381E6969DB004E81D2 /* addItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addItem.png; sourceTree = "<group>"; };
 		DCD14B391E6969DB004E81D2 /* editItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editItem.png; sourceTree = "<group>"; };
 		DCD14B421E6987ED004E81D2 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		DCE44A031E71330A000CD6F7 /* showNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = showNotification.swift; path = ../Controllers/showNotification.swift; sourceTree = "<group>"; };
+		DCE7F0701E7152CB0058C146 /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
+		DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E69120CD60C46CA5245CD891 /* Pods-List do.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-List do.debug.xcconfig"; path = "Pods/Target Support Files/Pods-List do/Pods-List do.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,19 +57,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58097F598D7A218C0D0A665A /* Pods_List_do.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11137C4D08FC8A7E270AF992 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C06BD620FD626740E9692940 /* Pods_List_do.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24BC8B7A2997CBC9636BDF36 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E69120CD60C46CA5245CD891 /* Pods-List do.debug.xcconfig */,
+				189C1B111503925C0CFDE3B1 /* Pods-List do.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DC2011CF1E359B380010261A = {
 			isa = PBXGroup;
 			children = (
 				DC2011DA1E359B380010261A /* List do */,
 				DC2011DB1E359B380010261A /* AppDelegate.swift */,
 				DC2011E71E359B380010261A /* Info.plist */,
+				DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */,
 				DC2011D91E359B380010261A /* Products */,
+				24BC8B7A2997CBC9636BDF36 /* Pods */,
+				11137C4D08FC8A7E270AF992 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,9 +141,11 @@
 			isa = PBXGroup;
 			children = (
 				DCD14B421E6987ED004E81D2 /* AllListViewController.swift */,
+				DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */,
 				DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */,
 				DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */,
-				DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */,
+				DC2F336E1E71678C008157AE /* LoginViewController.swift */,
+				DC8BE55D1E7171B7001FCF86 /* RegistorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -121,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD14B301E696879004E81D2 /* CheckList.swift */,
-				DCD14B311E696879004E81D2 /* ChecklistItem.swift */,
+				DCE7F0701E7152CB0058C146 /* SaveData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -154,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC2011EA1E359B380010261A /* Build configuration list for PBXNativeTarget "List do" */;
 			buildPhases = (
+				9DC7F5866282EC20B191EF8F /* [CP] Check Pods Manifest.lock */,
 				DC2011D41E359B380010261A /* Sources */,
 				DC2011D51E359B380010261A /* Frameworks */,
 				DC2011D61E359B380010261A /* Resources */,
+				58127E1C65625D87758E78C0 /* [CP] Embed Pods Frameworks */,
+				88B7C86A18749A21FD7875C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,10 +247,59 @@
 				DCD14B3A1E6969DB004E81D2 /* addItem.png in Resources */,
 				DCD14B3B1E6969DB004E81D2 /* editItem.png in Resources */,
 				DC2011E11E359B380010261A /* Main.storyboard in Resources */,
+				DCE7F0731E71629D0058C146 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		58127E1C65625D87758E78C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-List do/Pods-List do-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88B7C86A18749A21FD7875C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-List do/Pods-List do-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DC7F5866282EC20B191EF8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC2011D41E359B380010261A /* Sources */ = {
@@ -223,12 +308,14 @@
 			files = (
 				DCD14B2E1E69682B004E81D2 /* CheckListViewController.swift in Sources */,
 				DCE44A041E71330A000CD6F7 /* showNotification.swift in Sources */,
-				DCD14B331E696879004E81D2 /* ChecklistItem.swift in Sources */,
+				DC8BE55E1E7171B7001FCF86 /* RegistorViewController.swift in Sources */,
 				DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */,
+				DCE7F0711E7152CB0058C146 /* SaveData.swift in Sources */,
 				DCD14B361E6968EF004E81D2 /* CustomCheckListUINavigation.swift in Sources */,
 				DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */,
 				DCD14B321E696879004E81D2 /* CheckList.swift in Sources */,
 				DCD14B431E6987ED004E81D2 /* AllListViewController.swift in Sources */,
+				DC2F336F1E71678C008157AE /* LoginViewController.swift in Sources */,
 				DC2011DC1E359B380010261A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +437,7 @@
 		};
 		DC2011EB1E359B380010261A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E69120CD60C46CA5245CD891 /* Pods-List do.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -363,6 +451,7 @@
 		};
 		DC2011EC1E359B380010261A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 189C1B111503925C0CFDE3B1 /* Pods-List do.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";

@@ -12,9 +12,9 @@ protocol ItemDetailViewControllerDelegate: class {
     
     func itemDetailViewControllerDidCancel(controller : ItemDetailViewController)
     
-    func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem)
+    func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: CheckList)
     
-    func itemDetailViewController(controller: ItemDetailViewController, didFinishEdittingItem item: ChecklistItem)
+    func itemDetailViewController(controller: ItemDetailViewController, didFinishEdittingItem item: CheckList)
 }
 
 
@@ -32,7 +32,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     weak var delegate : ItemDetailViewControllerDelegate?
     
-    var itemToEdit:ChecklistItem!
+    var itemToEdit:CheckList!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,7 +46,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         
         if let item = itemToEdit{
            title = "Edit Item"
-           textFiled.text = item.text
+           textFiled.text = item.name
            remindSwitch.isOn  = item.shouldRemind
            dueDate = item.dueDate as Date
         }
@@ -93,17 +93,17 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     @IBAction func done(){
         if let item = itemToEdit{
-            item.text = textFiled.text!
+            item.name = textFiled.text!
             item.shouldRemind = remindSwitch.isOn
-            item.dueDate = dueDate as NSDate
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(controller: self, didFinishEdittingItem : item)
         }else{
             
-            let item:ChecklistItem = ChecklistItem()
-            item.text = textFiled.text!
-            item.checked = false
+            let item:CheckList = CheckList()
+            item.name = textFiled.text!
+            item.done = false
             item.shouldRemind = remindSwitch.isOn
-            item.dueDate = dueDate as NSDate
+            item.dueDate = dueDate
             delegate?.itemDetailViewController(controller: self, didFinishAddingItem: item)
         }
     }
@@ -125,7 +125,6 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         let delegate = UIApplication.shared.delegate as? AppDelegate
         let title:String = textFiled.text!
         delegate?.scheduleNotification(at: selectedDate, title: title, remindContent: title)
-        
     }
 
 }

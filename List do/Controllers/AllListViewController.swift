@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class AllListViewController: UITableViewController,ListDetailViewControllerDelegate {
 
     var lists:[CheckList]!
-    
+    var saveData = SaveData()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,12 +19,13 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
          self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         let addItemButton = UIButton(type: .custom)
         addItemButton.setImage(UIImage(named: "addItem.png"), for: .normal)
         addItemButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        addItemButton.addTarget(self, action: #selector(AllListViewController.pushAddItemVC), for: .touchUpInside)
+        //addItemButton.addTarget(self, action: #selector(AllListViewController.pushAddItemVC), for: .touchUpInside)
+       // let item1 = UIBarButtonItem(customView: addItemButton)
         //self.navigationItem.setLeftBarButtonItems([item1], animated: true)
     }
 
@@ -39,27 +40,35 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         
         super.init(coder: aDecoder)
         
-        let list = CheckList(name: "Birthdays")
-        lists.append(list)
-        
-        let list1 = CheckList(name: "Cool App")
-        lists.append(list1)
-        
-        let list2 = CheckList(name: "To Do")
-        lists.append(list2)
-
+       lists = saveData.loadCheckListItem()
     }
 
-    // MARK: - Table view data source
-    
-    func pushAddItemVC(){
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Add Checklist") as? ListDetailViewController {
-            //viewController.newsObj =
-            if let navigator = navigationController {
-                navigator.pushViewController(viewController, animated: true)
+   
+    @IBAction func LogoutButton(_ sender: Any) {
+        
+        if FIRAuth.auth()?.currentUser != nil {
+            do {
+                try FIRAuth.auth()?.signOut()
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login")
+                present(vc, animated: true, completion: nil)
+                
+            } catch let error as NSError {
+                print(error.localizedDescription)
             }
         }
     }
+    
+    // Add ItemCheckList
+    func pushAddItemVC(){
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ListDetailNavigationController")
+        
+        self.present(vc!, animated: true, completion: nil)
+}
+
+    // MARK: - Table view data source
+
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -84,8 +93,6 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         }else{
             return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,6 +112,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         let checklist = lists[indexPath.row]
         performSegue(withIdentifier: "ShowCheckList", sender: checklist)
         tableView.deselectRow(at: indexPath, animated: true)
+        saveData.saveChecklitsItem(items: lists)
     }
    
     // Override to support conditional editing of the table view.
@@ -123,6 +131,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         let indexPaths = [indexPath]
         
         tableView.deleteRows(at: indexPaths, with: .automatic)
+       saveData.saveChecklitsItem(items: lists)
     }
    
 
@@ -175,7 +184,6 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
                 controller.delegate = self
                 controller.checklistToEdit = nil
                 
-                
             }
         }
     }
@@ -196,6 +204,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         tableView.insertRows(at: indexPaths as [IndexPath], with: .automatic)
         
         dismiss(animated: true, completion: nil)
+       saveData.saveChecklitsItem(items: lists)
     }
     
     func listDetailViewController(controller: ListDetailViewController, didFinishEdittingItem checklist: CheckList) {
@@ -208,19 +217,6 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
             }
         }
         dismiss(animated: true, completion: nil)
+      saveData.saveChecklitsItem(items: lists)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

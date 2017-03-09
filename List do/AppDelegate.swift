@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-
+import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Notification access denied.")
             }
         }
-        
+        FIRApp.configure()
         return true
     }
 
@@ -67,9 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         print("Notification in app")
         showNoticationView()
-        
-        
-        
     }
 }
 //extension AppDelegate: UNUserNotificationCenterDelegate {
