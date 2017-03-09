@@ -25,9 +25,6 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         addItemButton.setImage(UIImage(named: "addItem.png"), for: .normal)
         addItemButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         addItemButton.addTarget(self, action: #selector(AllListViewController.pushAddItemVC), for: .touchUpInside)
-        
-        let item1 = UIBarButtonItem(customView: addItemButton)
-        
         //self.navigationItem.setLeftBarButtonItems([item1], animated: true)
     }
 

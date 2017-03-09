@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var lists: [CheckList]!
-
+    var titleRemind:String!
+    var messRemind:String!
+    // allow notification
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
@@ -33,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
         // conten Nofitication
-        
+        titleRemind = title
+        messRemind = remindContent
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = remindContent
@@ -49,8 +52,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Uh oh! We had an error: \(error)")
             }
         }
-}
+    }
     
+    func showNoticationView(){
+        let window = UIApplication.shared.keyWindow!
+        let view = showNotification(frame: CGRect(x: 20, y: 0, width: 330, height: 110))
+        
+        view.customView(titleLabel: titleRemind, mess: messRemind)
+        window.addSubview(view)
+        view.hiddenView()
+    }
+    
+    
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        print("Notification in app")
+        showNoticationView()
+        
+        
+        
+    }
 }
 //extension AppDelegate: UNUserNotificationCenterDelegate {
 //        func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {

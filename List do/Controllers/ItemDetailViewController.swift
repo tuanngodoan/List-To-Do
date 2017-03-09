@@ -125,6 +125,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         let delegate = UIApplication.shared.delegate as? AppDelegate
         let title:String = textFiled.text!
         delegate?.scheduleNotification(at: selectedDate, title: title, remindContent: title)
+        
     }
 
 }

@@ -11,31 +11,31 @@ import UIKit
 
 class ChecklistItem: NSObject, NSCoding{
 
-    var text = ""
-    var checked:Bool = false
+    var name = ""
+    var id  = ""
+    var done:Bool = false
     var shouldRemind = false
-    //var itemID:Int
-    var dueDate = NSDate()
+    var dueDate = Date(timeIntervalSinceNow: 0.0)
     
     func toggleChecked(){
-        checked = !checked
+        done = !done
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(text, forKey: "Text")
-        aCoder.encode(checked, forKey: "Checked")
+        aCoder.encode(name, forKey: "Name")
+        aCoder.encode(id,forKey:"Id")
+        aCoder.encode(done, forKey: "Done")
         aCoder.encode(shouldRemind, forKey: "ShouldRemind")
-        //aCoder.encode(itemID, forKey: "itemID")
-        //aCoder.encode(dueDate,forKey: "DueDate")
+        aCoder.encode(dueDate,forKey: "DueDate")
     }
     
    
     required init?(coder aDecoder: NSCoder) {
-        text =  aDecoder.decodeObject(forKey: "Text") as! String
-        checked = aDecoder.decodeBool(forKey: "Checked")
-        //dueDate = aDecoder.decodeObject(forKey: "DueDate") as! NSDate
+        name =  aDecoder.decodeObject(forKey: "Name") as! String
+        id = aDecoder.decodeObject(forKey: "Id") as! String
+        done = aDecoder.decodeBool(forKey: "Done")
         shouldRemind = aDecoder.decodeBool(forKey: "ShouldRemind")
-        //itemID = aDecoder.decodeInteger(forKey: "itemID")
+        dueDate = aDecoder.decodeObject(forKey: "DueDate") as! Date
        super.init()
     }
     
