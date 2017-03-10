@@ -37,12 +37,10 @@ class showNotification: UIView {
     
     // delay after
     func hiddenView(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.isHidden  = true
         }
     }
-    
-    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

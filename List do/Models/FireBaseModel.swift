@@ -41,8 +41,6 @@ class FireBaseModel: NSObject /*,NSCoding*/ {
     }
 }
 
-    
-    
 //    // Document
 //    func documentsDirectory() -> String{
 //        

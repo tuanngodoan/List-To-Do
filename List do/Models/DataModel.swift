@@ -7,14 +7,20 @@
 //
 
 import Foundation
-
+import FirebaseDatabase
 class DataModel: NSObject {
     
     var lists = [CheckList]()
     
+    
     override init(){
         super.init()
         loadCheckListItem()
+        
+        let rootRef = FIRDatabase.database().reference(fromURL: "https://listdo-c8fa5.firebaseio.com")
+        let dataSave = [Any]()
+        
+        rootRef.child("Lists").setValue(dataSave)
     }
 
     // Document

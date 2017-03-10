@@ -365,7 +365,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-lU-Ugd">
-                                <rect key="frame" x="12.5" y="176" width="350" height="316"/>
+                                <rect key="frame" x="12.5" y="175.5" width="350" height="316"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="test@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfb-cI-JzO">
                                         <rect key="frame" x="21" y="107" width="306" height="48"/>
@@ -390,7 +390,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="signInButton:" destination="52J-TI-qW9" eventType="touchUpInside" id="kPN-AV-3NA"/>
+                                            <action selector="SignInButton:" destination="52J-TI-qW9" eventType="touchUpInside" id="ofS-Vn-xDJ"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginIcon" translatesAutoresizingMaskIntoConstraints="NO" id="EDF-Ld-rvP">
@@ -438,7 +438,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-Eb-uu8">
-                                <rect key="frame" x="12.5" y="502" width="350" height="36"/>
+                                <rect key="frame" x="12.5" y="496.5" width="350" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="i8y-FX-euL"/>
                                 </constraints>
@@ -451,7 +451,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAi-a8-cvf">
-                                <rect key="frame" x="12.5" y="548" width="362" height="36"/>
+                                <rect key="frame" x="12.5" y="543.5" width="362" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Forgot your password?">
                                     <color key="titleColor" red="0.94117647059999998" green="0.40784313729999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -468,8 +468,8 @@
                             <constraint firstItem="VAi-a8-cvf" firstAttribute="leading" secondItem="tBS-Eb-uu8" secondAttribute="leading" id="Ieq-dz-ayU"/>
                             <constraint firstItem="Mmf-lU-Ugd" firstAttribute="centerX" secondItem="d5N-bO-wGS" secondAttribute="centerX" id="JTo-tG-LAt"/>
                             <constraint firstItem="VAi-a8-cvf" firstAttribute="height" secondItem="tBS-Eb-uu8" secondAttribute="height" id="QWM-Xj-3ca"/>
-                            <constraint firstItem="tBS-Eb-uu8" firstAttribute="top" secondItem="Mmf-lU-Ugd" secondAttribute="bottom" constant="10" id="ZvM-M2-nlm"/>
-                            <constraint firstItem="VAi-a8-cvf" firstAttribute="top" secondItem="tBS-Eb-uu8" secondAttribute="bottom" constant="10" id="bXO-EU-c9p"/>
+                            <constraint firstItem="tBS-Eb-uu8" firstAttribute="top" secondItem="Mmf-lU-Ugd" secondAttribute="bottom" constant="5" id="ZvM-M2-nlm"/>
+                            <constraint firstItem="VAi-a8-cvf" firstAttribute="top" secondItem="tBS-Eb-uu8" secondAttribute="bottom" constant="11" id="bXO-EU-c9p"/>
                             <constraint firstItem="tBS-Eb-uu8" firstAttribute="centerX" secondItem="Mmf-lU-Ugd" secondAttribute="centerX" id="hSL-T5-xuL"/>
                             <constraint firstItem="VAi-a8-cvf" firstAttribute="width" secondItem="tBS-Eb-uu8" secondAttribute="width" constant="12" id="nME-Wd-7J8"/>
                             <constraint firstItem="tBS-Eb-uu8" firstAttribute="leading" secondItem="Mmf-lU-Ugd" secondAttribute="leading" id="oIE-zL-kjF"/>

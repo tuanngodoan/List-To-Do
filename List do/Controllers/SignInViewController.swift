@@ -19,16 +19,16 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fireBase = FireBaseModel()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-    @IBAction func signInButton(_ sender: Any) {
+    @IBAction func SignInButton(_ sender: Any) {
         loginWithFireBase(userName: emailTextField.text!, password: passwordTextField.text!)
     }
-    
 
     // Login with account FireBase
     func loginWithFireBase(userName:String,password:String){

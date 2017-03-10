@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import Firebase
+import FirebaseDatabase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
         return true
     }
 
@@ -63,11 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showNoticationView(){
         let window = UIApplication.shared.keyWindow!
-        let view = showNotification(frame: CGRect(x: 20, y: 0, width: 330, height: 110))
+        let view = showNotification(frame: CGRect(x: 20, y:-110, width: 330, height: 110))
         
-        view.customView(titleLabel: titleRemind, mess: messRemind)
-        window.addSubview(view)
-        view.hiddenView()
+            view.customView(titleLabel: titleRemind, mess: messRemind)
+            window.addSubview(view)
+
+            UIView.animate(withDuration: 1.0, animations: {
+                    view.center = CGPoint(x: view.center.x, y: 60)
+            }) { (finished) in
+                view.hiddenView()
+            }
     }
     
     

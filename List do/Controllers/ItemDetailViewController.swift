@@ -53,15 +53,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         remindSwitch.isOn = false
         datePicker.isHidden = true
         dueDateTitle.isEnabled = false
-        updateDueDateLabel()
-    }
-    
-    
-    func updateDueDateLabel() {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        dueDateTitle.text = formatter.string(from: dueDate)
+        dueDateTitle.text = dueDate.dateToString(date: dueDate)
     }
     
     @IBAction func remindSwitchChanged(sender: UISwitch){
@@ -119,7 +111,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     @IBAction func dateChanged(datePicker: UIDatePicker){
         dueDate = datePicker.date
-        updateDueDateLabel()
+        dueDateTitle.text = dueDate.dateToString(date: dueDate)
         
         let selectedDate = datePicker.date
         let delegate = UIApplication.shared.delegate as? AppDelegate

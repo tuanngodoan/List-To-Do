@@ -16,6 +16,10 @@ class CheckList: NSObject, NSCoding {
     var shouldRemind = false
     var dueDate = Date(timeIntervalSinceNow: 0.0)
     var children = [CheckList]()
+    
+    
+    
+    
     func toggleChecked(){
         done = !done
     }
@@ -39,6 +43,7 @@ class CheckList: NSObject, NSCoding {
         super.init()
     }
     
+    
     override init(){
         super.init()
     }
@@ -46,4 +51,16 @@ class CheckList: NSObject, NSCoding {
         self.name = name
         super.init()
     }
+    
+    func parseToAnyObject() -> Any{
+        return [
+            "name": name,
+            "done": done,
+            "shouldRemind": shouldRemind,
+            "dueDate": dueDate.dateToString(date: dueDate)
+            //"Child": children
+        ]
+    }
+    
+    
 }

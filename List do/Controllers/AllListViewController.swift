@@ -7,26 +7,34 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
+import FirebaseDatabase
+
 class AllListViewController: UITableViewController,ListDetailViewControllerDelegate {
 
     var dataModel:DataModel!
     var fireBase:FireBaseModel!
+    //var severData:SeverDataModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fireBase = FireBaseModel()
-
+       // severData.writeDataSever()
+        
+       // chirldRef.setValue(["Test1": "Test1"])
+        
+        
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-//        let addItemButton = UIButton(type: .custom)
-//        addItemButton.setImage(UIImage(named: "addItem.png"), for: .normal)
-//        addItemButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        //let addItemButton = UIButton(type: .custom)
+        //addItemButton.setImage(UIImage(named: "addItem.png"), for: .normal)
+        //addItemButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         //addItemButton.addTarget(self, action: #selector(AllListViewController.pushAddItemVC), for: .touchUpInside)
-       // let item1 = UIBarButtonItem(customView: addItemButton)
+        // let item1 = UIBarButtonItem(customView: addItemButton)
         //self.navigationItem.setLeftBarButtonItems([item1], animated: true)
     }
 
