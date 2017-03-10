@@ -12,7 +12,7 @@
 		DC2011E11E359B380010261A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2011DF1E359B380010261A /* Main.storyboard */; };
 		DC2011E31E359B380010261A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC2011E21E359B380010261A /* Assets.xcassets */; };
 		DC2011E61E359B380010261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2011E41E359B380010261A /* LaunchScreen.storyboard */; };
-		DC2F336F1E71678C008157AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2F336E1E71678C008157AE /* LoginViewController.swift */; };
+		DC2F336F1E71678C008157AE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2F336E1E71678C008157AE /* SignInViewController.swift */; };
 		DC8BE55E1E7171B7001FCF86 /* RegistorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8BE55D1E7171B7001FCF86 /* RegistorViewController.swift */; };
 		DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */; };
 		DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */; };
@@ -25,6 +25,8 @@
 		DCE44A041E71330A000CD6F7 /* showNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE44A031E71330A000CD6F7 /* showNotification.swift */; };
 		DCE7F0711E7152CB0058C146 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7F0701E7152CB0058C146 /* DataModel.swift */; };
 		DCE7F0731E71629D0058C146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */; };
+		DCF977BA1E7229CE0036DE04 /* loginIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCF977B91E7229CE0036DE04 /* loginIcon.png */; };
+		DCF977BC1E722A6E0036DE04 /* FireBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF977BB1E722A6E0036DE04 /* FireBaseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +38,7 @@
 		DC2011E21E359B380010261A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		DC2011E51E359B380010261A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC2011E71E359B380010261A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "List do/Info.plist"; sourceTree = "<group>"; };
-		DC2F336E1E71678C008157AE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DC2F336E1E71678C008157AE /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DC8BE55D1E7171B7001FCF86 /* RegistorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistorViewController.swift; sourceTree = "<group>"; };
 		DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		DCE44A031E71330A000CD6F7 /* showNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = showNotification.swift; path = ../Controllers/showNotification.swift; sourceTree = "<group>"; };
 		DCE7F0701E7152CB0058C146 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		DCE7F0721E71629D0058C146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCF977B91E7229CE0036DE04 /* loginIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginIcon.png; sourceTree = "<group>"; };
+		DCF977BB1E722A6E0036DE04 /* FireBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseModel.swift; sourceTree = "<group>"; };
 		E69120CD60C46CA5245CD891 /* Pods-List do.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-List do.debug.xcconfig"; path = "Pods/Target Support Files/Pods-List do/Pods-List do.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,7 +148,7 @@
 				DCD14B2B1E69682B004E81D2 /* CheckListViewController.swift */,
 				DCD14B271E6967F4004E81D2 /* ListDetailViewController.swift */,
 				DCD14B291E69682B004E81D2 /* ItemDetailViewController.swift */,
-				DC2F336E1E71678C008157AE /* LoginViewController.swift */,
+				DC2F336E1E71678C008157AE /* SignInViewController.swift */,
 				DC8BE55D1E7171B7001FCF86 /* RegistorViewController.swift */,
 			);
 			path = Controllers;
@@ -155,6 +159,7 @@
 			children = (
 				DCD14B301E696879004E81D2 /* CheckList.swift */,
 				DCE7F0701E7152CB0058C146 /* DataModel.swift */,
+				DCF977BB1E722A6E0036DE04 /* FireBaseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				DC2011DF1E359B380010261A /* Main.storyboard */,
 				DCD14B381E6969DB004E81D2 /* addItem.png */,
 				DCD14B391E6969DB004E81D2 /* editItem.png */,
+				DCF977B91E7229CE0036DE04 /* loginIcon.png */,
 				DC2011E21E359B380010261A /* Assets.xcassets */,
 				DC2011E41E359B380010261A /* LaunchScreen.storyboard */,
 			);
@@ -243,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC2011E61E359B380010261A /* LaunchScreen.storyboard in Resources */,
+				DCF977BA1E7229CE0036DE04 /* loginIcon.png in Resources */,
 				DC2011E31E359B380010261A /* Assets.xcassets in Resources */,
 				DCD14B3A1E6969DB004E81D2 /* addItem.png in Resources */,
 				DCD14B3B1E6969DB004E81D2 /* editItem.png in Resources */,
@@ -310,12 +317,13 @@
 				DCE44A041E71330A000CD6F7 /* showNotification.swift in Sources */,
 				DC8BE55E1E7171B7001FCF86 /* RegistorViewController.swift in Sources */,
 				DCD14B2C1E69682B004E81D2 /* ItemDetailViewController.swift in Sources */,
+				DCF977BC1E722A6E0036DE04 /* FireBaseModel.swift in Sources */,
 				DCE7F0711E7152CB0058C146 /* DataModel.swift in Sources */,
 				DCD14B361E6968EF004E81D2 /* CustomCheckListUINavigation.swift in Sources */,
 				DCD14B281E6967F4004E81D2 /* ListDetailViewController.swift in Sources */,
 				DCD14B321E696879004E81D2 /* CheckList.swift in Sources */,
 				DCD14B431E6987ED004E81D2 /* AllListViewController.swift in Sources */,
-				DC2F336F1E71678C008157AE /* LoginViewController.swift in Sources */,
+				DC2F336F1E71678C008157AE /* SignInViewController.swift in Sources */,
 				DC2011DC1E359B380010261A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

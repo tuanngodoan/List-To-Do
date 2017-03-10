@@ -10,10 +10,11 @@ import UIKit
 import FirebaseAuth
 class AllListViewController: UITableViewController,ListDetailViewControllerDelegate {
 
-    //var lists:[CheckList]!
     var dataModel:DataModel!
+    var fireBase:FireBaseModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        fireBase = FireBaseModel()
 
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
@@ -42,17 +43,16 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
    
     @IBAction func LogoutButton(_ sender: Any) {
         
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
+        fireBase.signOut { (isSignOut) in
+            if isSignOut{
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login")
                 present(vc, animated: true, completion: nil)
-                
-            } catch let error as NSError {
-                print(error.localizedDescription)
+            }else{
+                //
             }
         }
-    }
+}
+    
     
 // Add ItemCheckList
 //    func pushAddItemVC(){

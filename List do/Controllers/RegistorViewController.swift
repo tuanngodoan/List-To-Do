@@ -56,6 +56,14 @@ class RegistorViewController: UIViewController {
         }
     }
     
+    // alertToUSer
+    func alertToUser(title:String, messenge: String){
+        let alertController = UIAlertController(title: title, message: messenge, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
 
     /*
     // MARK: - Navigation
