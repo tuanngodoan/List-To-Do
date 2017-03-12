@@ -10,19 +10,17 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class AllListViewController: UITableViewController,ListDetailViewControllerDelegate {
+class AllListViewController: UITableViewController,ListDetailViewControllerDelegate{
 
     var dataModel:DataModel!
     var fireBase:FireBaseModel!
-    //var severData:SeverDataModel!
-    
+    var severData:SeverDataModel!
+    var lists = [CheckList]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireBase = FireBaseModel()
-       // severData.writeDataSever()
         
-       // chirldRef.setValue(["Test1": "Test1"])
-        
+        // Load checkLists from User
+        loadDataFromSever()
         
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
@@ -45,10 +43,32 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        dataModel = DataModel()
+        fireBase = FireBaseModel()
+        severData = SeverDataModel()
+        
+        // Data from local
+        //dataModel = DataModel()
+    }
+    
+    func loadDataFromSever(){
+        
+        var newLists = [CheckList]()
+        self.severData.rootRef.child(severData.userUID).observe(.childAdded, with: { (snapshot) in
+            
+            let value = snapshot.value
+            
+            let checklistItem = CheckList(snapshotValue: value as! NSDictionary)
+            newLists.append(checklistItem)
+
+            self.lists = newLists
+            self.tableView.reloadData()
+        })
+    }
+    
+    func saveDataToSever(){
+        
     }
 
-   
     @IBAction func LogoutButton(_ sender: Any) {
         
         fireBase.signOut { (isSignOut) in
@@ -62,12 +82,12 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
 }
     
     
-// Add ItemCheckList
-//    func pushAddItemVC(){
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ListDetailNavigationController")
-//        
-//        self.present(vc!, animated: true, completion: nil)
-//    }
+    // Add ItemCheckList
+    //    func pushAddItemVC(){
+    //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ListDetailNavigationController")
+    //
+    //        self.present(vc!, animated: true, completion: nil)
+    //    }
 
     // MARK: - Table view data source
 
@@ -78,7 +98,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataModel.lists.count
+        return lists.count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -100,7 +120,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         
         let cell = cellForTableView(tableView: tableView)
         
-        let checklist = dataModel.lists[indexPath.row]
+        let checklist = lists[indexPath.row]
         cell.textLabel?.text = checklist.name
         cell.accessoryType = .detailDisclosureButton
         
@@ -110,7 +130,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let checklist = dataModel.lists[indexPath.row]
+        let checklist = lists[indexPath.row]
         performSegue(withIdentifier: "ShowCheckList", sender: checklist)
         tableView.deselectRow(at: indexPath, animated: true)
         dataModel.saveChecklitsItem()
@@ -127,7 +147,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
-        dataModel.lists.remove(at: indexPath.row)
+        lists.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         
@@ -158,7 +178,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         
         controller.delegate = self
         
-        let checklist = dataModel.lists[indexPath.row]
+        let checklist = lists[indexPath.row]
         
         controller.checklistToEdit = checklist
         
@@ -194,9 +214,9 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     }
     func listDetailViewController(controller: ListDetailViewController, didFinishAddingItem checklist: CheckList) {
         
-        let newRow = dataModel.lists.count
+        let newRow = lists.count
         
-        dataModel.lists.append(checklist)
+        lists.append(checklist)
         
         let indexPath = NSIndexPath(row: newRow, section: 0)
         

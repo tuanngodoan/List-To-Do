@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 class DataModel: NSObject {
     
     var lists = [CheckList]()
@@ -15,14 +16,21 @@ class DataModel: NSObject {
     
     override init(){
         super.init()
-        loadCheckListItem()
+        //loadCheckListItem()
         
-        let rootRef = FIRDatabase.database().reference(fromURL: "https://listdo-c8fa5.firebaseio.com")
-        let dataSave = [Any]()
+       
         
-        rootRef.child("Lists").setValue(dataSave)
-    }
+        //rootRef.child("user").setValue(["item": "111"])
 
+        
+        
+//        // write to Data
+//        for list in lists {
+//            //dataSave.append(list.parseToAnyObject())
+//            rootRef.child("6USQPwpauANbaUp0qO3H30wzXHL2").childByAutoId().setValue(list.parseToAnyObject())
+//        }
+
+    }
     // Document
     func documentsDirectory() -> String{
         
@@ -63,4 +71,3 @@ class DataModel: NSObject {
         }
     }
 }
-

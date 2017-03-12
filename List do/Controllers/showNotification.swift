@@ -37,6 +37,7 @@ class showNotification: UIView {
     
     // delay after
     func hiddenView(){
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.isHidden  = true
         }

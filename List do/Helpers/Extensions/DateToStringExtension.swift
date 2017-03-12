@@ -18,5 +18,10 @@ extension Date{
         dateString = formatter.string(from: date)
        return dateString
     }
+    func stringToDate(date:Date)->Date{
+        var date:Date!
+        
+        return date
+    }
     
 }
