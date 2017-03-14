@@ -38,8 +38,7 @@ class ListDetailViewController : UITableViewController, UITextFieldDelegate{
         if let checklist = checklistToEdit{
             title = "Edit Checklist"
             textFiled.text = checklist.name
-            donBarButton.isEnabled = false
-            
+            donBarButton.isEnabled = true
         }
     }
    
@@ -48,7 +47,7 @@ class ListDetailViewController : UITableViewController, UITextFieldDelegate{
         let oldText:NSString = textField.text! as NSString
         let newText:NSString = oldText.replacingCharacters(in: range, with: string) as NSString
         
-        donBarButton.isEnabled = (newText.length > 0)
+        //donBarButton.isEnabled = (newText.length > 0)
         return true
     }
     
@@ -60,7 +59,6 @@ class ListDetailViewController : UITableViewController, UITextFieldDelegate{
         if let checklist = checklistToEdit{
             checklist.name = textFiled.text!
             delegate?.listDetailViewController(controller: self, didFinishEdittingItem : checklist)
-        
         }else{
             
             let checklist = CheckList(name: textFiled.text!)

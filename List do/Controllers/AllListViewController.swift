@@ -18,9 +18,9 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     var lists = [CheckList]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // Load checkLists from User
-        loadDataFromSever()
+        loadListFromSever()
         
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
@@ -50,25 +50,50 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         //dataModel = DataModel()
     }
     
-    func loadDataFromSever(){
+    func loadListFromSever(){
         
         var newLists = [CheckList]()
-        self.severData.rootRef.child(severData.userUID).observe(.childAdded, with: { (snapshot) in
+            severData.rootRef.child(severData.userUID).observe(.childAdded, with: { (snapshot) in
             
-            let value = snapshot.value
+            //let value = snapshot.value as! NSDictionary
             
-            let checklistItem = CheckList(snapshotValue: value as! NSDictionary)
+            let checklistItem = CheckList(snapshot: snapshot )
             newLists.append(checklistItem)
-
             self.lists = newLists
-            self.tableView.reloadData()
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         })
     }
     
-    func saveDataToSever(){
+    //
+    func writeNewListsDictionary(){
+        
+        let index = lists.count
+        if index == 0 {
+            for list in lists {
+                updateList(list: list, index: index)
+            }
+        }else{
+            updateList(list: lists[index-1], index: index)
+        }
+    }
+    
+    func updateList(list: CheckList, index: Int){
+        let key = severData.rootRef.child(severData.userUID).childByAutoId().key
+        let listDic = list.parseToAnyObject()
+        lists[index].keyID = key
+        severData.rootRef.child(severData.userUID).child(key).setValue(listDic)
+    }
+    
+    //
+    func removeList() {
+        
         
     }
 
+    
     @IBAction func LogoutButton(_ sender: Any) {
         
         fireBase.signOut { (isSignOut) in
@@ -76,7 +101,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login")
                 present(vc, animated: true, completion: nil)
             }else{
-                //
+                
             }
         }
 }
@@ -133,7 +158,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         let checklist = lists[indexPath.row]
         performSegue(withIdentifier: "ShowCheckList", sender: checklist)
         tableView.deselectRow(at: indexPath, animated: true)
-        dataModel.saveChecklitsItem()
+        
     }
    
     // Override to support conditional editing of the table view.
@@ -146,23 +171,19 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
+        
+        let key = lists[indexPath.row].keyID
         lists.remove(at: indexPath.row)
-        
         let indexPaths = [indexPath]
-        
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        dataModel.saveChecklitsItem()
+        
+        severData.rootRef.child(severData.userUID).child(key).removeValue()
     }
-   
-
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    
-
     
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -204,7 +225,6 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
                 
                 controller.delegate = self
                 controller.checklistToEdit = nil
-                
             }
         }
     }
@@ -225,19 +245,30 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         tableView.insertRows(at: indexPaths as [IndexPath], with: .automatic)
         
         dismiss(animated: true, completion: nil)
-       dataModel.saveChecklitsItem()
+        
+        //let newRow = lists.count
+        if newRow == 0 {
+            for list in lists {
+                updateList(list: list, index: newRow)
+            }
+        }else{
+            updateList(list: checklist, index: newRow)
+        }
+        self.tableView.reloadData()
     }
     
     func listDetailViewController(controller: ListDetailViewController, didFinishEdittingItem checklist: CheckList) {
         
-        if let index = dataModel.lists.index(of: checklist){
+        if let index = lists.index(of: checklist){
+            
             let indexPath = NSIndexPath(row: index, section: 0)
             
             if let cell = tableView.cellForRow(at: indexPath as IndexPath){
                 cell.textLabel?.text = checklist.name
+                // Update data to sever
+                severData.rootRef.child(severData.userUID).child(lists[index].keyID).updateChildValues(["name":checklist.name])
             }
         }
         dismiss(animated: true, completion: nil)
-      dataModel.saveChecklitsItem()
     }
 }

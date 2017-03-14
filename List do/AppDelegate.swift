@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         FIRApp.configure()
-        FIRDatabase.database().persistenceEnabled = true
+        //FIRDatabase.database().persistenceEnabled = true
         return true
     }
 
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().add(request) {(error) in
             if let error = error {
-                print("Uh oh! We had an error: \(error)")
+                print("error: \(error)")
             }
         }
     }
@@ -76,8 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 view.hiddenView()
             }
     }
-    
-    
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         print("Notification in app")

@@ -11,33 +11,17 @@ import FirebaseDatabase
 
 class CheckList: NSObject/*, NSCoding*/ {
     
-    var name = ""
+    var name:String = ""
     var done:Bool = false
     var shouldRemind = false
     var dueDate = Date(timeIntervalSinceNow: 0.0)
-    var children = [CheckList]()
+    var keyID = ""
+    var childItems = [CheckList]()
     
     func toggleChecked(){
         done = !done
     }
-//    func encode(with aCoder: NSCoder) {
-//        aCoder.encode(name, forKey: "Name")
-//        
-//        aCoder.encode(done, forKey: "Done")
-//        aCoder.encode(shouldRemind, forKey: "ShouldRemind")
-//        aCoder.encode(dueDate,forKey: "DueDate")
-//        aCoder.encode(children,forKey: "Children")
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        name =  aDecoder.decodeObject(forKey: "Name") as! String
-//        done = aDecoder.decodeBool(forKey: "Done")
-//        shouldRemind = aDecoder.decodeBool(forKey: "ShouldRemind")
-//        dueDate = aDecoder.decodeObject(forKey: "DueDate") as! Date
-//        children = aDecoder.decodeObject(forKey: "Children") as! [CheckList]
-//        super.init()
-//    }
-//    
+
     override init(){
         super.init()
     }
@@ -48,20 +32,51 @@ class CheckList: NSObject/*, NSCoding*/ {
     }
     
     // init for load Data from Sever
-    init(snapshotValue: NSDictionary) {
+    init(snapshot: FIRDataSnapshot) {
         
-        name = snapshotValue["name"] as! String
-        done = snapshotValue["done"] as! Bool
-        shouldRemind = snapshotValue["shouldRemind"] as! Bool
-    }
+        self.keyID  = snapshot.key
+        
+        if let snapshotValue = snapshot.value as! NSDictionary!{
+           
+            if let name  = snapshotValue["name"] as! String!{
+                self.name = name
+            }
+            if let Items = snapshotValue["childItems"] as! Array<NSDictionary>!{
+                for item in Items{
+                    let childItem = CheckList()
+                    childItem.name = item["name"] as! String
+                    childItem.done = item["done"] as! Bool
+                    childItem.shouldRemind = item["shouldRemind"] as! Bool
+                    //childItem.dueDate = item["dueDate"] as! Date
+                    childItems.append(childItem)
+                }
+                
+            }
+        }
+        
+   
+}
     
-    func parseToAnyObject() -> Any{
+    func parseToAnyObject() -> [String:Any]{
+        var  i = 0
+        var Items = [Int:NSDictionary]()
+        
+        for item in childItems{
+                Items[i] = item.parseChildItemsToAnyObject()
+            i = i + 1
+        }
+        return [
+            "name": name,
+            "childItems": Items
+        ]
+    }
+    //
+    func parseChildItemsToAnyObject() -> NSDictionary{
         return [
             "name": name,
             "done": done,
             "shouldRemind": shouldRemind,
             "dueDate": dueDate.dateToString(date: dueDate)
-            //"Child": children
         ]
     }
-    }
+}

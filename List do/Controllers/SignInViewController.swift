@@ -38,10 +38,15 @@ class SignInViewController: UIViewController {
             fireBase.signIn(userName: userName, passWord: password, completion: { (isSuccessfullyLogin) in
 
                 if isSuccessfullyLogin {
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "CheckList")
-                    self.present(vc!, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CheckList")
+                        self.present(vc!, animated: true, completion: nil)
+
+                    }
                 }else{
-                    self.alertToUser(title: "Failed to log in", messenge: "Email and password is incorrect")
+                    DispatchQueue.main.async {
+                     self.alertToUser(title: "Failed to log in", messenge: "Email and password is incorrect")
+                    }
                 }
             })
         }
