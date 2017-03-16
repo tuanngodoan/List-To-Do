@@ -31,8 +31,7 @@ IOS > 10.2
 * FireBase
 
 ### Sẽ update
-
-- Database theo tài khoản cá nhân
+- Login Facebook,Google ...
 - Tích hợp GG calender
 
 
