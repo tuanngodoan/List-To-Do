@@ -36,6 +36,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         textFiled.becomeFirstResponder()
     }
     
@@ -45,15 +46,19 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
         
         
         if let item = itemToEdit{
-           title = "Edit Item"
-           textFiled.text = item.name
-           remindSwitch.isOn  = item.shouldRemind
-           dueDate = item.dueDate as Date
+            title = "Edit Item"
+            textFiled.text = item.name
+            remindSwitch.isOn  = item.shouldRemind
+            dueDate = item.dueDate as Date
+            datePicker.date = item.dueDate
+            dueDateTitle.text = item.dueDate.dateToString(date: dueDate)
+        }else{
+            remindSwitch.isOn = false
+            datePicker.isHidden = true
+            dueDateTitle.isEnabled = false
+            dueDateTitle.text = dueDate.dateToString(date: dueDate)
         }
-        remindSwitch.isOn = false
-        datePicker.isHidden = true
-        dueDateTitle.isEnabled = false
-        dueDateTitle.text = dueDate.dateToString(date: dueDate)
+
     }
     
     @IBAction func remindSwitchChanged(sender: UISwitch){
@@ -112,6 +117,7 @@ class ItemDetailViewController : UITableViewController, UITextFieldDelegate{
     @IBAction func dateChanged(datePicker: UIDatePicker){
         dueDate = datePicker.date
         dueDateTitle.text = dueDate.dateToString(date: dueDate)
+        //Thieu: First load data 
         
         let selectedDate = datePicker.date
         let delegate = UIApplication.shared.delegate as? AppDelegate

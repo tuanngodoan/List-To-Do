@@ -14,12 +14,11 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    var fireBase:FireBaseModel!
+    var fireBase:FireBaseManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireBase = FireBaseModel()
-        
+        fireBase = FireBaseManager()
     }
 
     override func didReceiveMemoryWarning() {

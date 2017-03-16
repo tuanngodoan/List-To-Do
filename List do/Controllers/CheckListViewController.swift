@@ -8,18 +8,31 @@
 
 import UIKit
 import Foundation
-
+import FirebaseDatabase
 class checkListViewController: UITableViewController,ItemDetailViewControllerDelegate {
     
     var checklist:CheckList!
+    var fireBaseManager:FireBaseManager!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = checklist.name
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        checklist = CheckList()
+        fireBaseManager = FireBaseManager()
+    }
+    
+    
+    func writeNewItem(item: CheckList, index: Int){
+        let key = fireBaseManager.rootRef.child(fireBaseManager.userUID).child("\(checklist.keyID)/childItems").childByAutoId().key
+        checklist.childItems[index].keyID = key
+        let listDic = item.parseChildItemsToAnyObject()
+        fireBaseManager.rootRef.child(fireBaseManager.userUID).child("\(checklist.keyID)/childItems").child(key).setValue(listDic)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +57,11 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
             let item = checklist.childItems[indexPath.row]
             item.toggleChecked()
             configueCheckmarkForCell(cell: cell, withChecklistItem: item)
+            
+            // update Done
+            let key = checklist.childItems[indexPath.row].keyID
+            fireBaseManager.rootRef.child(fireBaseManager.userUID).child("\(checklist.keyID)/childItems/\(key)/done").setValue(item.done)
+            
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -51,11 +69,15 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        checklist.childItems.remove(at: indexPath.row)
+        
+        let indexRow = indexPath.row
+        let keyID = checklist.childItems[indexRow].keyID
+        checklist.childItems.remove(at: indexRow)
         
         let indexPaths = [indexPath]
-        
         tableView.deleteRows(at: indexPaths, with: .automatic)
+
+        fireBaseManager.rootRef.child(fireBaseManager.userUID).child(checklist.keyID).child("childItems").child(keyID).removeValue()
     }
     
     func configueCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: CheckList){
@@ -71,6 +93,7 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
     
     func configureTextForCell(cell: UITableViewCell, withChecklistItem item: CheckList){
         let label = cell.viewWithTag(1000) as! UILabel
+        label.text = ""
         label.text = item.name
     }
     
@@ -88,7 +111,17 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
         let indexPaths = [indexPath]
         
         tableView.insertRows(at: indexPaths as [IndexPath], with: .automatic)
-
+        
+        print("Item = ", item.parseChildItemsToAnyObject())
+        
+        if newRow == 0{
+            for child in checklist.childItems {
+               writeNewItem(item: child, index: newRow)
+            }
+        }else{
+            writeNewItem(item: item, index: newRow)
+        }
+        tableView.reloadData()
         dismiss(animated: true, completion: nil)
 
     }
@@ -99,10 +132,15 @@ class checkListViewController: UITableViewController,ItemDetailViewControllerDel
             let indexPath = NSIndexPath(row: i, section: 0)
             if let cell = tableView.cellForRow(at: indexPath as IndexPath){
                 configureTextForCell(cell: cell, withChecklistItem: item)
+                
+                let key = fireBaseManager.rootRef.child(fireBaseManager.userUID).child("\(checklist.keyID)/childItems/\(item.keyID)")
+                let listDic = item.parseChildItemsToAnyObject()
+                key.setValue(listDic)
             }
         }
-            dismiss(animated: true, completion: nil)
-    }
+        
+        dismiss(animated: true, completion: nil)
+}
     
     
     //

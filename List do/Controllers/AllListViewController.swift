@@ -13,14 +13,17 @@ import FirebaseDatabase
 class AllListViewController: UITableViewController,ListDetailViewControllerDelegate{
 
     var dataModel:DataModel!
-    var fireBase:FireBaseModel!
-    var severData:SeverDataModel!
+    //var fireBase:FireBaseModel!
+    var fireBaseManager:FireBaseManager!
     var lists = [CheckList]()
     override func viewDidLoad() {
         super.viewDidLoad()
       
         // Load checkLists from User
         loadListFromSever()
+
+        
+        
         
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
@@ -43,8 +46,8 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        fireBase = FireBaseModel()
-        severData = SeverDataModel()
+        //fireBase = FireBaseModel()
+        fireBaseManager = FireBaseManager()
         
         // Data from local
         //dataModel = DataModel()
@@ -53,7 +56,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
     func loadListFromSever(){
         
         var newLists = [CheckList]()
-            severData.rootRef.child(severData.userUID).observe(.childAdded, with: { (snapshot) in
+            fireBaseManager.rootRef.child(fireBaseManager.userUID).observe(.childAdded, with: { (snapshot) in
             
             //let value = snapshot.value as! NSDictionary
             
@@ -67,36 +70,16 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         })
     }
     
-    //
-    func writeNewListsDictionary(){
-        
-        let index = lists.count
-        if index == 0 {
-            for list in lists {
-                updateList(list: list, index: index)
-            }
-        }else{
-            updateList(list: lists[index-1], index: index)
-        }
-    }
-    
-    func updateList(list: CheckList, index: Int){
-        let key = severData.rootRef.child(severData.userUID).childByAutoId().key
-        let listDic = list.parseToAnyObject()
+    func updateList(item: CheckList, index: Int){
+        let key = fireBaseManager.rootRef.child(fireBaseManager.userUID).childByAutoId().key
         lists[index].keyID = key
-        severData.rootRef.child(severData.userUID).child(key).setValue(listDic)
+        let listDic = item.parseToAnyObject()
+        fireBaseManager.rootRef.child(fireBaseManager.userUID).child(key).setValue(listDic)
     }
-    
-    //
-    func removeList() {
-        
-        
-    }
-
     
     @IBAction func LogoutButton(_ sender: Any) {
         
-        fireBase.signOut { (isSignOut) in
+        fireBaseManager.signOut { (isSignOut) in
             if isSignOut{
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login")
                 present(vc, animated: true, completion: nil)
@@ -177,7 +160,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
         
-        severData.rootRef.child(severData.userUID).child(key).removeValue()
+        fireBaseManager.rootRef.child(fireBaseManager.userUID).child(key).removeValue()
     }
     
     // Override to support rearranging the table view.
@@ -216,6 +199,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
             let controller = segue.destination as! checkListViewController
             
             controller.checklist = sender as! CheckList
+            
         }else{
             if segue.identifier == "AddChecklist"{
                 
@@ -246,13 +230,12 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
         
         dismiss(animated: true, completion: nil)
         
-        //let newRow = lists.count
         if newRow == 0 {
             for list in lists {
-                updateList(list: list, index: newRow)
+                updateList(item: list, index: newRow)
             }
         }else{
-            updateList(list: checklist, index: newRow)
+            updateList(item: checklist, index: newRow)
         }
         self.tableView.reloadData()
     }
@@ -266,7 +249,7 @@ class AllListViewController: UITableViewController,ListDetailViewControllerDeleg
             if let cell = tableView.cellForRow(at: indexPath as IndexPath){
                 cell.textLabel?.text = checklist.name
                 // Update data to sever
-                severData.rootRef.child(severData.userUID).child(lists[index].keyID).updateChildValues(["name":checklist.name])
+                fireBaseManager.rootRef.child(fireBaseManager.userUID).child(lists[index].keyID).updateChildValues(["name":checklist.name])
             }
         }
         dismiss(animated: true, completion: nil)

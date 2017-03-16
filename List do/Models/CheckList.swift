@@ -18,12 +18,17 @@ class CheckList: NSObject/*, NSCoding*/ {
     var keyID = ""
     var childItems = [CheckList]()
     
+    var severData = FireBaseManager()
+    
     func toggleChecked(){
         done = !done
     }
 
     override init(){
         super.init()
+        for child in childItems {
+            child.keyID = severData.rootRef.childByAutoId().key
+        }
     }
     
     init(name: String) {
@@ -41,29 +46,40 @@ class CheckList: NSObject/*, NSCoding*/ {
             if let name  = snapshotValue["name"] as! String!{
                 self.name = name
             }
-            if let Items = snapshotValue["childItems"] as! Array<NSDictionary>!{
-                for item in Items{
+            if let Items = snapshotValue["childItems"] as! NSDictionary!{
+                
+                
+                for (key,_) in Items {
                     let childItem = CheckList()
-                    childItem.name = item["name"] as! String
-                    childItem.done = item["done"] as! Bool
-                    childItem.shouldRemind = item["shouldRemind"] as! Bool
-                    //childItem.dueDate = item["dueDate"] as! Date
+                    childItem.keyID = key as! String
+                    if let itemDic = Items[key] as? NSDictionary! {
+                        if let name = itemDic["name"] as! String!{
+                            childItem.name = name
+                        }
+                        if let done = itemDic["done"] as! Bool!{
+                            childItem.done = done
+                        }
+                        if let shouldRemind = itemDic["shouldRemind"] as! Bool!{
+                            childItem.shouldRemind = shouldRemind
+                        }
+                        if let dueDate = itemDic["dueDate"] as! String! {
+                            var date = Date()
+                            date = date.stringToDate(dateString: dueDate)
+                            childItem.dueDate = date
+                        }
+                    }
                     childItems.append(childItem)
                 }
-                
+                }
             }
-        }
-        
-   
-}
+    }
     
+    //
     func parseToAnyObject() -> [String:Any]{
-        var  i = 0
-        var Items = [Int:NSDictionary]()
+        var Items = [String:NSDictionary]()
         
         for item in childItems{
-                Items[i] = item.parseChildItemsToAnyObject()
-            i = i + 1
+                Items[item.keyID] = item.parseChildItemsToAnyObject()
         }
         return [
             "name": name,
@@ -73,10 +89,10 @@ class CheckList: NSObject/*, NSCoding*/ {
     //
     func parseChildItemsToAnyObject() -> NSDictionary{
         return [
-            "name": name,
-            "done": done,
-            "shouldRemind": shouldRemind,
-            "dueDate": dueDate.dateToString(date: dueDate)
+                "name": name,
+                "done": done,
+                "shouldRemind": shouldRemind,
+                "dueDate": dueDate.dateToString(date: dueDate)
         ]
     }
 }

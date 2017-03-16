@@ -8,12 +8,27 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
-class FireBaseModel: NSObject /*,NSCoding*/ {
+class FireBaseManager: NSObject {
     
     var user:String = ""
     var password:String = ""
     var isRememerUser:Bool = false
+    
+    var Base_URL = "https://listdo-c8fa5.firebaseio.com"
+    let rootRef:FIRDatabaseReference!
+    let userUID:String!
+    //var lists:[CheckList]!
+    
+    override init(){
+        
+        rootRef = FIRDatabase.database().reference()
+        userUID = FIRAuth.auth()?.currentUser?.uid
+        // lists = [CheckList]()
+    }
+    
+    
     
     func signIn(userName:String, passWord: String, completion: @escaping (_ isSuccessfully: Bool) -> ()){
             FIRAuth.auth()?.signIn(withEmail: userName, password: passWord, completion: { (user, error) in
@@ -24,6 +39,7 @@ class FireBaseModel: NSObject /*,NSCoding*/ {
                 }
             })
         }
+    
     
     func signOut(completion: (Bool)->()){
         if FIRAuth.auth()?.currentUser != nil {
@@ -39,44 +55,35 @@ class FireBaseModel: NSObject /*,NSCoding*/ {
     func registorAccount(){
         
     }
-}
-
-//    // Document
-//    func documentsDirectory() -> String{
+    
+    
+//    //
+//    func writeNewListsDictionary(lists: [CheckList]){
 //        
-//        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-//        
-//        return paths[0]
-//    }
-//    
-//    func dataFilePath() -> String{
-//        print("\(documentsDirectory())/Checklists.plist")
-//        return "\(documentsDirectory())/Checklists.plist"
-//    }
-//    
-//    
-//    // Save data
-//    func saveChecklitsItem(){
-//        
-//        let data = NSMutableData()
-//        let archiver = NSKeyedArchiver(forWritingWith: data)
-//        archiver.encode(lists, forKey: "Checklist")
-//        archiver.finishEncoding()
-//        data.write(toFile: dataFilePath(), atomically: true)
-//    }
-//    
-//    // Load data
-//    func loadCheckListItem(){
-//        
-//        let path = dataFilePath()
-//        if FileManager.default.fileExists(atPath: path){
-//            if let data = NSData(contentsOfFile: path){
-//                
-//                let unarchiver = NSKeyedUnarchiver(forReadingWith: data as Data)
-//                
-//                lists = (unarchiver.decodeObject(forKey: "Checklist") as? [CheckList])!
-//                
-//                unarchiver.finishDecoding()
+//        let index = lists.count
+//        if index == 0 {
+//            for list in lists {
+//                updateList(listsItem: lists,listChild: : list, index: index)
 //            }
+//        }else{
+//            updateList(listsItem: lists,list
+//: lists[index-1], index: index)
 //        }
 //    }
+    
+//    func updateList(refString: String?, listsItem: [CheckList],item: CheckList, index: Int){
+//       
+//        let key = rootRef.child(refString!).childByAutoId().key
+//        let listDic = item.parseToAnyObject()
+//        listsItem[index].keyID = key
+//        rootRef.child(refString!).setValue(listDic)
+//    }
+//    
+//    //
+    func remove() {
+        
+        
+    }
+
+}
+
