@@ -1,4 +1,4 @@
-# Nhắc nhở công việc - To Do List
+﻿# Nhắc nhở công việc - To Do List
 
 Mô phỏng lại ứng dụng nhắc nhở công viêc cá nhân.
 Chưa update
@@ -25,7 +25,7 @@ IOS > 10.2
 ### Đang có
 
 * Thêm/Xoá/Sửa công việc
-* Lưu và Load ứng dụng.
+* Lưu và Load ứng dụng.aszdXFGHJKL;
 * Hẹn ngày giờ hoàn thành công việc
 * Thông báo(Local Notification)
 * FireBase
